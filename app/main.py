@@ -48,7 +48,9 @@ with st.sidebar:
 
 topic_input=st.text_input("Enter your topic (e.g.,'Python coding mistakes','Gym routines'):")
 
+
 if st.button("Generate Viral Reel Plan",type="primary"):
+
     if not topic_input.strip():
         st.warning("Please enter a valid topic first.")
     else:

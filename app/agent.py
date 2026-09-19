@@ -15,8 +15,10 @@ class AgentState(TypedDict):
 
 
 def node_trend_generator(state:AgentState):
+    print("Node Start:")
     state["logs"].append("[Tool called]: Trend Idea Generator")
     state["trends"]=generate_trend_ideas(state["topic"],state["tone"])
+    print("Node End.")
     return state
 
 
@@ -46,7 +48,11 @@ def node_file_saver(state:AgentState):
         f"##Hashtags\n{state['hashtags']}\n\n"
         f"##Review\n{state['review']}\n\n"
     )
-    state["saved_path"]=save_to_file(state["topic"],full_output,output_type="script")
+    save_to_file(state["topic"],state["script"],output_type="script")
+    save_to_file(state["topic"],state["review"],output_type="post")
+    saved_file_path=save_to_file(state["topic"],full_output,output_type="saved_results")
+    state["saved_path"]=saved_file_path
+    # state["saved_path"]=save_to_file(state["topic"],full_output,output_type="script")
     save_interaction(state["topic"],state["tone"],"Reel Script",full_output)
     return state
 
