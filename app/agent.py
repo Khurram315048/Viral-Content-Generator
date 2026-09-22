@@ -15,7 +15,7 @@ class AgentState(TypedDict):
 
 
 def node_trend_generator(state:AgentState):
-    print("Node Start:")
+    print("Node trend generator Start:")
     state["logs"].append("[Tool called]: Trend Idea Generator")
     state["trends"]=generate_trend_ideas(state["topic"],state["tone"])
     print("Node End.")
@@ -23,23 +23,30 @@ def node_trend_generator(state:AgentState):
 
 
 def node_script_writer(state:AgentState):
+    print("Node scripter start: ")
     state["logs"].append("[Tool called]: Reel Script Writer")
     state["script"]=generate_reel_script(state["trends"],state["tone"])
+    print('Node end')
     return state
 
 def node_hashtag_generator(state:AgentState):
+    print("Node hashtag start: ")
     state["logs"].append("[Tool called]: Hashtag Generator")
     state["hashtags"]=generate_hashtags(state["topic"])
+    print("Node end")
     return state
 
 def node_reviewer(state:AgentState):
+    print("Node reviewer start: ")
     state["logs"].append("[Tool called]: Content Review")
     combined_content=f"Script;\n{state['script']}\n\nHashtags:\n{state['hashtags']}"
     state["review"]=review_content(combined_content)
+    print("node end")
     return state
 
 
 def node_file_saver(state:AgentState):
+    print("Node file saver start: ")
     state["logs"].append("[Tool called]: File Saver & Memor")
     full_output=(
         f"#Viral Reel Plan: {state['topic']}\n\n"
@@ -54,6 +61,7 @@ def node_file_saver(state:AgentState):
     state["saved_path"]=saved_file_path
     # state["saved_path"]=save_to_file(state["topic"],full_output,output_type="script")
     save_interaction(state["topic"],state["tone"],"Reel Script",full_output)
+    print("Node end")
     return state
 
 def build_agent_graph():

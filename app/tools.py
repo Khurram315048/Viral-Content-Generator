@@ -1,4 +1,5 @@
 import os
+import re
 import requests
 from app.prompts import(TREND_IDEA_PROMPT,REEL_SCRIPT_PROMPT,HASHTAG_PROMPT,CONTENT_REVIEW_PROMPT)
 
@@ -38,7 +39,12 @@ def review_content(content:str)->str:
     return call_ollama(prompt)
 
 def save_to_file(topic:str,content:str,output_type:str="script")->str:
-    sanitized_topic=topic.lower().replace(' ','-')
+    sanitized_topic=re.sub(r'[^a-zA-Z0-9\s_-]', '',topic)
+    sanitized_topic=re.sub(r'\s+','-',sanitized_topic).strip('-_').lower()
+    if not sanitized_topic:
+        sanitized_topic="default_topic"
+
+    sanitized_topic=sanitized_topic[:80]    
 
     if output_type=="post":
         dir_path="outputs/generated_posts"

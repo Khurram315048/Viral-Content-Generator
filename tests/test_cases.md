@@ -46,3 +46,9 @@ This document outlines the systematic test cases used to evaluate the dynamic be
 * **Input Topic:** Implementing asynchronous background task queues with Celery and Redis for heavy machine learning pipelines
 * **Selected Tone:** Professional & Educational
 * **Execution Flow:** Translates heavy background architecture into sequential visual cues while documenting hardware timeout thresholds under local execution constraints.
+
+* **TC-06 (Pandas Optimization):** Focuses on converting object types to category/int downcasting to save RAM.
+* **TC-07 (Dockerization):** Translates `Dockerfile` layers and multi-stage builds into visual step-by-step actions.
+* **TC-08 (JWT Auth):** Breaks down stateless token verification and secure password hashing with bcrypt.
+* **TC-09 (WebSockets):** Highlights live chat event loops and instant client-server packet transmission.
+* **TC-10 (Streamlit State):** Explains session dictionaries and `st.cache_data` decorators for high-performance apps.

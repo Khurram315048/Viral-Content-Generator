@@ -1,0 +1,1 @@
+Error communication with ollama: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=300)
